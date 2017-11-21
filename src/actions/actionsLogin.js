@@ -7,13 +7,10 @@ export function signUp (fullname, email, pass, survey)
 
    auth.createUserWithEmailAndPassword (email, pass).then ( user => {
       let newuser = {
-         fullname, email, survey
+         fullname, email
       }
       database.ref ('users/' + user.uid).set (newuser);   
 
-     // database.ref ('users/' + user.uid + '/options').update ( 'option1, option2, option3...');   
-     //  database.ref ('users/').push (newuser);   
-      
       database.ref ('users/' + user.uid).once ('value').then ( res => {
          const fullUserInfo = res.val(); 
 
@@ -23,7 +20,6 @@ export function signUp (fullname, email, pass, survey)
                id : user.uid,
                email :  fullUserInfo.email,
                fullname :  fullUserInfo.fullname,
-               survey :  fullUserInfo.survey          
             }
          })
       })
@@ -55,7 +51,6 @@ export function signIn (user, pass) {
                id : userObj.uid,
                email :  fullUserInfo.email,
                fullname :  fullUserInfo.fullname,
-               survey :  fullUserInfo.survey            
             }
          })
       })

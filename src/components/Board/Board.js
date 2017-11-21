@@ -3,7 +3,9 @@ import {addStage} from '../../actions/actions'
 
 import {connect} from 'redux-zero/react';
 import Stage from '../Stage/Stage';
-// import '../../css/main.css'
+import '../../css/main.css';
+
+import logo from '../../img/logo.png';
 
 export const Board = ({stages, tasks}) => {
   console.log('stages', stages)
@@ -15,21 +17,27 @@ export const Board = ({stages, tasks}) => {
 
    return (
       <div className = "Board-container">
-        
-          <div className = "Board-column">
-             {list}
-          </div>
-          <div className = "Board-column">
-            <form onSubmit = { (e) => {
+                    <div className="row">
+                <div className="col-sm-12">
+                <div className = "Board-column">
+            <form className="saveList" onSubmit = { (e) => {
                e.preventDefault();
                addStage (this.stageInputRef.value);
             }}>
-               <input type="text" ref = {e => this.stageInputRef = e}/>
-               <button type="submit">
+               <input className="form-control" type="text" ref = {e => this.stageInputRef = e}/>
+               <button className="btn btn-primary btn-block" type="submit">
                   save list
                </button>
                </form>
             </div>
+            <div className = "Board-column-m">
+              <br/>
+             {list}
+          </div>
+                </div>
+
+            </div>
+         
       </div>
    ); 
 }

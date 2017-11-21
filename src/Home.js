@@ -13,7 +13,7 @@ export const Home  = ({successLogin, user}) => {
             !successLogin  && <Redirect to = "/home" />
          }
          <h1> Kahoot Survey Admin </h1>
-         <button onClick = {signOut}>
+         <button  className="btn btn-primary btn-block" onClick = {signOut}>
             SignOut
          </button> 
          <Redirect to = "/TrelloApp" />

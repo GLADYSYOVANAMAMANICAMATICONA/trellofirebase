@@ -1,3 +1,6 @@
+
+
+
 import store from '../store/store'
 import {auth, database} from './firebase';
 
@@ -43,14 +46,11 @@ export function  addStage (text) {
 
 export function  addTask (stage, text) {
    console.log ('addTask:', stage + ' - ' +  text);
-
    let tasks = [...store.getState().tasks];
-
    let newTask = {
       id : store.getState().tasks.length,
       title: text,
       stage : stage
    } 
-
    database.ref('tasks/' + newTask.id).set (newTask);
 }

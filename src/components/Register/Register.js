@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
-import {NavLink,  Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
-import {connect} from 'redux-zero/react'
-import {signIn, signOut, signUp} from '../../actions/actionsLogin';
+import { connect } from 'redux-zero/react'
+import { signIn, signOut, signUp } from '../../actions/actionsLogin';
 
-export const Register = ({successLogin}) => {
-      return (
-         <div>
-            {
-               successLogin  && <Redirect to = "/home" />
-            }
-            <form onSubmit =  {
-               e => {
-                  e.preventDefault();
-                  signUp (this.fullNameRef.value, this.emailRef.value, this.passwordRef.value, this.surveyRef.value, this.questionRef.value, this.optionsRef.value) 
-               }
-            }>
-              <input placeholder = "FullName" ref = {e => this.fullNameRef = e} />
-              <input placeholder = "Email" ref = {e => this.emailRef = e}/>
-              <input type="password" placeholder = "Password" ref = {e => this.passwordRef = e}/>
-              <input placeholder = "Survey title" ref = {e => this.surveyRef = e} />
-              <input placeholder = "Question title" ref = {e => this.questionRef = e} />
-              <input placeholder = "Options [array]" ref = {e => this.optionsRef = e} />
-             
-              <button type="submit">
-                 Sign Up!
+export const Register = ({ successLogin }) => {
+  return (
+    <div>
+      <div className="col-sm-4">
+      </div>
+      <div className="col-sm-4">
+        {
+          successLogin && <Redirect to="/home" />
+        }
+        <form onSubmit={
+          e => {
+            e.preventDefault();
+            signUp(this.fullNameRef.value, this.emailRef.value, this.passwordRef.value)
+          }
+        }>
+          <div class="input-group">
+
+            <input className="form-control" placeholder="FullName" ref={e => this.fullNameRef = e} />
+            <input className="form-control" placeholder="Email" ref={e => this.emailRef = e} />
+            <input className="form-control" type="password" placeholder="Password" ref={e => this.passwordRef = e} />
+
+            <button className="btn btn-primary btn-block" type="submit">
+              Sign Up!
               </button>
-            </form>
-         </div>
-      );
-   }
+          </div>
+
+        </form>
+        <NavLink className="cont-icon " to="/Login">
+                <p className="red">Login</p>
+            </NavLink>
+      </div>
+    </div>
+  );
+}
